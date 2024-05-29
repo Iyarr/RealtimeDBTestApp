@@ -18,6 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RealtimeDBTestTheme {
                 // A surface container using the 'background' color from the theme
+                val db: RealTimeDB = RealTimeDB()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
