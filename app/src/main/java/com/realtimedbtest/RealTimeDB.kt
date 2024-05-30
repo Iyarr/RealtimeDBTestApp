@@ -15,7 +15,6 @@ public class RealTimeDB {
     private val database: FirebaseDatabase = Firebase.database
     private val myRef : DatabaseReference =
         database.getReference("https://realtimedbtest-9a79b-default-rtdb.firebaseio.com.us-central1.firebasedatabase.app")
-    private var data: String? = ""
 
     fun putData() {
         myRef.setValue("Hello, World!")
@@ -27,7 +26,7 @@ public class RealTimeDB {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                data = dataSnapshot.getValue<String>()
+                val data = dataSnapshot.getValue<String>()
                 Log.d(TAG, "Value is: $data")
             }
 
