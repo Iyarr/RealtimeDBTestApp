@@ -42,21 +42,34 @@ class MainActivity : ComponentActivity()
                 ) {
                     Text(text = "Hello Android!")
                 }
-                    Greeting()
+                    Buttonlist()
             }
         }
     }
 }
 
 @Composable
-fun Greeting() {
-    Column(modifier = Modifier.fillMaxSize()) {
-        Button(
-            onClick = {println("ボタンがクリックされました")},
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text(text = "クリックしてください")
+fun Buttonlist() {
+    val onButtonClick: (String) -> Unit = { buttonLabel ->
+            println(buttonLabel+"clicked")
         }
+
+    Column(modifier = Modifier.fillMaxWidth())
+    {
+        MyButton("Button1") { println("button1clicked") }
+        MyButton("Button2") { println("button2clicked") }
+        MyButton("Button3") { println("button3clicked") }
+        MyButton("Button4") { println("button4clicked") }
     }
 }
+@Composable
+fun MyButton(label: String, onclick: () -> Unit) {
+    Button(
+        onClick =onclick,
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Text(text = label)
+    }
+}
+
 
