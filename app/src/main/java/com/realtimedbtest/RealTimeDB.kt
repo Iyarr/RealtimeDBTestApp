@@ -10,11 +10,13 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.realtimedbtest.RealTimeDB
 
 public class RealTimeDB {
     private val database: FirebaseDatabase = Firebase.database
+    // Don't pass Database path
     private val myRef : DatabaseReference =
-        database.getReference("https://realtimedbtest-9a79b-default-rtdb.firebaseio.com.us-central1.firebasedatabase.app")
+        database.getReference("message")
 
     fun putData() {
         myRef.setValue("Hello, World!")
