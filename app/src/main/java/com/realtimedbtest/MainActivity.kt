@@ -42,16 +42,14 @@ class MainActivity : ComponentActivity()
                 ) {
                     Text(text = "Hello Android!")
                 }
-                setContent {
-                    Greeting(name = "Android")
-                }
+                    Greeting()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Greeting() {
     Column(modifier = Modifier.fillMaxSize()) {
         Button(
             onClick = {println("ボタンがクリックされました")},
