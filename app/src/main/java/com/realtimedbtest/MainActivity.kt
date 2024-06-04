@@ -49,10 +49,10 @@ class MainActivity : ComponentActivity() {
 fun Buttonlist() {
     val db: RealTimeDB = RealTimeDB()
     Column(modifier = Modifier.fillMaxWidth()) {
-        MyButton("Button1") { db::getData }
-        MyButton("Button2") { db::getData }
-        MyButton("Button3") { db::putData }
-        MyButton("Button4") { db::putData }
+        MyButton("Button1") { db::setLogModeToRef }
+        MyButton("Button2") { db::setLogModeToRef }
+        MyButton("Button3") { db.putData("Hello") }
+        MyButton("Button4") { db.putData("He") }
     }
 }
 
