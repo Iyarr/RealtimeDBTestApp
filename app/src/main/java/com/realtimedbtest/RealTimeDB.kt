@@ -10,21 +10,17 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.realtimedbtest.RealTimeDB
 
 public class RealTimeDB {
     private val database: FirebaseDatabase = Firebase.database
-    // Don't pass Database path
-    private val myRef : DatabaseReference =
-        database.getReference("message")
 
-    fun putData() {
-        myRef.setValue("Hello, World!")
+    private fun getRef(table: String): DatabaseReference {
+        return database.getReference(table)
     }
 
-    fun getData() {
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
+    // Screen is changed, this listener is cancelled
+    private fun setEventListenerToRef(ref: DatabaseReference) {
+        ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
@@ -38,4 +34,20 @@ public class RealTimeDB {
             }
         })
     }
+    fun getUserTable(userId: String): DatabaseReference {
+        return getRef("User/$userId")
+    }
+
+    // Start of test function for Murase
+    fun putData(value: String) {
+        val myRef = getRef("message")
+        myRef.setValue(value)
+    }
+
+    fun setLogModeToRef() {
+        val myRef : DatabaseReference = getRef("message")
+        // Set EventListener to this DatabaseReference
+        setEventListenerToRef(myRef)
+    }
+    // Last
 }
