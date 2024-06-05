@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 
 public class RealTimeDB {
     private val database: FirebaseDatabase = Firebase.database
+    private val testRef : DatabaseReference = getRef("message")
 
     private fun getRef(table: String): DatabaseReference {
         return database.getReference(table)
@@ -40,14 +41,12 @@ public class RealTimeDB {
 
     // Start of test function for Murase
     fun putData(value: String) {
-        val myRef = getRef("message")
-        myRef.setValue(value)
+        testRef.setValue(value)
     }
 
     fun setLogModeToRef() {
-        val myRef : DatabaseReference = getRef("message")
         // Set EventListener to this DatabaseReference
-        setEventListenerToRef(myRef)
+        setEventListenerToRef(testRef)
     }
     // Last
 }
