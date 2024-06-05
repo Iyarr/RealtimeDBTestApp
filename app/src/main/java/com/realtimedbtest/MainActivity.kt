@@ -13,10 +13,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,14 +47,21 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Buttonlist() {
     val db: RealTimeDB = RealTimeDB()
+    var text by remember { mutableStateOf("") } // textを定義
     Column(modifier = Modifier.fillMaxWidth()) {
         MyButton("Button1") { db::setLogModeToRef }
-        MyButton("Button2") { db::setLogModeToRef }
-        MyButton("Button3") { db.putData("Hello") }
-        MyButton("Button4") { db.putData("He") }
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Enter text here") }
+        )
+        MyButton("Button2") { db.putData(text) }
+        //MyButton("Button3") { db.putData("Hello") }
+        //MyButton("Button4") { db.putData("He") }
     }
 }
 
